@@ -598,6 +598,71 @@ body.mobile-nav-active #mobile-nav-toggle {
   border: 2px solid #03C4EB;
 }
 
+/* Coding Section
+--------------------------------*/
+#coding {
+  background: #fff;
+  padding: 80px 0;
+}
+
+#coding .coding-item {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 260px;
+  width: 100%;
+  display: table;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+#coding .coding-item .details {
+  height: 260px;
+  background: #fff;
+  display: table-cell;
+  vertical-align: middle;
+  opacity: 0;
+  transition: 0.3s;
+  text-align: center;
+}
+
+#coding .coding-item .details h4 {
+  font-size: 16px;
+  transition: opacity 0.3s, -webkit-transform 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+  -webkit-transform: translate3d(0, -15px, 0);
+  transform: translate3d(0, -15px, 0);
+  font-weight: 700;
+  color: #333333;
+}
+
+#coding .coding-item .details span {
+  display: block;
+  color: #666666;
+  font-size: 13px;
+  transition: opacity 0.3s, -webkit-transform 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+  -webkit-transform: translate3d(0, 15px, 0);
+  transform: translate3d(0, 15px, 0);
+}
+
+#coding .coding-item:hover .details {
+  opacity: 0.8;
+}
+
+#coding .coding-item:hover .details h4 {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+#coding .coding-item:hover .details span {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
 /* Portfolio Section
 --------------------------------*/
 #portfolio {
