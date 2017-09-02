@@ -1,7 +1,7 @@
 {
   "name": "acesWebsite",
   "version": "0.0.1",
-  "description": "",
+  "description": "Website for Aces-ACM",
   "main": "server.js",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "full stack",
     "Express",
     "Node",
-    "javascript",
+    "javascript"
   ],
   "scripts": {
   "start": "node server.js"
