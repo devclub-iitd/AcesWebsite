@@ -1,0 +1,395 @@
+/*
+	Folio Dos by FWT
+	www.freewebsitetemplat.es
+	Photos by Fotogrph http://fotogrph.com/
+	Released under the Creative Commons Attribution 3.0 License.
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: underline;
+	color: #53B4FD;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+body {
+	font-size: 11pt;
+	line-height: 1.75em;
+	background: white;
+	color: #CDC9C6;
+	text-align: justify;
+}
+
+body,
+input {
+	font-family: Antic, sans-serif;
+}
+
+br.clear {
+	clear: both;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	text-transform: lowercase;
+}
+
+h2 {
+	font-size: 2.25em;
+}
+
+h2,
+h3,
+h4 {
+	margin-bottom: 1em;
+	font-family: Antic, sans-serif;
+	color: #FFF;
+}
+
+h3 {
+	font-size: 1.75em;
+}
+
+h4 {
+	font-size: 1.5em;
+}
+
+img.left {
+	float: left;
+	margin: 8px 20px 20px 0;
+}
+
+img.top {
+	margin: 8px 0 20px 0;
+}
+
+p {
+	margin-bottom: 1.5em;
+}
+
+ul {
+	margin-bottom: 1.5em;
+	list-style: none;
+}
+
+ul h4 {
+	margin-bottom: 0.35em;
+}
+
+#outer {
+	margin: 0 auto;
+	width: 1180px;
+}
+
+#banner {
+	position: relative;
+	padding: 0;
+	height: 350px;
+	width: 1180px;
+	margin: 0;
+	background: #000;
+}
+
+/* /////////////////////////////////////////////////////////////////////////// 
+// Logo
+/////////////////////////////////////////////////////////////////////////// */
+
+#logo {
+
+	line-height: 68px;
+	margin: 40px 0 0 0;
+
+}
+
+#logo a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+#logo h1 {
+	font-size: 5em;
+	letter-spacing: -3px;
+	text-shadow: 2px 2px 2px #000;
+	font-family: Antic, sans-serif;
+	text-align: center;
+}
+
+#logo a span {
+	color: #e46606;
+}
+
+/* /////////////////////////////////////////////////////////////////////////// 
+// Nav
+/////////////////////////////////////////////////////////////////////////// */
+
+#nav {
+	padding: 0 28px;
+	width: 1124px;
+	height: 50px;
+	line-height: 50px;
+	margin: 40px 0 0 0;
+	font-family: Antic, sans-serif;
+	list-style: none;
+
+}
+
+#nav>li {
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+#nav>li.active {
+	color: #fff;
+}
+
+#nav>li a {
+	color: #FFF;
+	text-decoration: none;
+	padding: 0 20px;
+}
+
+.dropotron li.opener {}
+
+.dropotron li.opener a {
+	background: url(images/arrow.png) no-repeat right center;
+}
+
+.dropotron li.opener li a {
+	background: none;
+}
+
+.dropotron {
+	width: 180px;
+	padding: 0px;
+	color: #fff;
+	list-style: none;
+}
+
+.dropotron a {
+	padding: 0 20px;
+	line-height: 50px;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.dropotron li {
+	padding: 0;
+	margin: 0;
+}
+
+.dropotron li:hover,
+.dropotron li.active {
+}
+
+
+
+#copyright {
+	margin: 0 0 16px 0;
+	padding: 48px 0 76px 0;
+	text-align: center;
+}
+
+#copyright a {
+	color: #CDC9C6;
+}
+
+/* /////////////////////////////////////////////////////////////////////////// 
+// Gallery
+/////////////////////////////////////////////////////////////////////////// */
+
+.gallery {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.gallery li {
+	width: 260px;
+	float: left;
+	padding: 17px;
+	position: relative;
+}
+
+.gallery h3 {
+	position: absolute;
+	top: 182px;
+	padding: 5px;
+	opacity: 0.85;
+	width: 250px;
+	text-align: center;
+
+}
+
+.gallery img {
+
+	margin: 0;
+}
+
+
+
+.poptrox-popup {
+	background: #111111;
+
+	padding: 20px 20px 60px 20px;
+	color: #aaaaaa;
+}
+
+.poptrox-popup .closer {
+	position: absolute;
+	width: 80px;
+	height: 30px;
+	bottom: 15px;
+	right: 20px;
+	color: #ffffff;
+	text-align: center;
+	text-decoration: none;
+	outline: 0;
+
+	line-height: 30px;
+	text-shadow: 0 1px 1px #003A6C;
+}
+
+.poptrox-popup .closer:hover {
+	background: #2094E6;
+}
+
+.poptrox-popup .caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 60px;
+	line-height: 60px;
+	padding: 0 20px 0 20px;
+}
+
+
+
+/* /////////////////////////////////////////////////////////////////////////// 
+// Slider
+/////////////////////////////////////////////////////////////////////////// */
+
+#slider {
+	margin: 0 auto;
+	width: 1180px;
+	position: relative;
+}
+
+#slider .button {
+	display: inline-block;
+	background: #0074C6;
+	color: #ffffff;
+	text-align: center;
+	line-height: 50px;
+	height: 50px;
+	text-decoration: none;
+	outline: 0;
+
+	font-size: 1.25em;
+	border-bottom: solid 2px #0054A6;
+	text-shadow: 0 1px 1px #003A6C;
+}
+
+#slider .button:hover {
+	background: #2094E6;
+}
+
+#slider .viewer {
+	width: 1180px;
+	height: 350px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#slider .viewer .reel {
+	display: none;
+	height: 350px;
+}
+
+#slider .viewer .reel .slide {
+	position: relative;
+	width: 1180px;
+	height: 350px;
+}
+
+#slider .viewer .reel h2 {
+	position: absolute;
+	bottom: 40px;
+	left: 0;
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	opacity: 0.85;
+	font-weight: normal;
+	color: black;
+	font-size: 2.25em;
+	margin: 0;
+}
+
+#slider .viewer .reel p {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	opacity: 0.85;
+	font-weight: normal;
+	color: #fff;
+	font-size: 1.1em;
+}
+
+#slider .previous-button {
+	position: absolute;
+	top: 180px;
+	left: 65px;
+	width: 50px;
+}
+
+#slider .next-button {
+	position: absolute;
+	top: 180px;
+	right: 65px;
+	width: 50px;
+}
+
+
+
+#slider .indicator {
+	list-style: none;
+	padding: 0;
+	margin: 20px auto;
+	text-align: center;
+}
+
+#slider .indicator li {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	text-indent: -9999em;
+	background: #c8c8c8;
+	margin: 0 2px;
+
+	padding: 0;
+}
+
+#slider .indicator li.active {
+	background: black bottom left;
+}
