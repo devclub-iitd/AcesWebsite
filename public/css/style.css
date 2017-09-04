@@ -4,9 +4,11 @@
   Author: BootstrapMade
   Author URL: https://bootstrapmade.com
 */
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
 body {
   background: #fff;
   color: #666666;
@@ -18,7 +20,13 @@ a {
   transition: 0.5s;
 }
 
-a:hover, a:active, a:focus {
+hr {
+  border-top: 1px solid #8c8b8b;
+}
+
+a:hover,
+a:active,
+a:focus {
   color: #03c5ec;
   outline: none;
   text-decoration: none;
@@ -29,7 +37,12 @@ p {
   margin: 0 0 30px 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Raleway", sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
@@ -37,6 +50,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Prelaoder */
+
 #preloader {
   position: fixed;
   left: 0;
@@ -49,6 +63,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Back to top button */
+
 .back-to-top {
   position: fixed;
   display: none;
@@ -82,6 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Welcome
 --------------------------------------------------------------*/
+
 #hero {
   display: table;
   width: 100%;
@@ -138,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-#hero .rotating > .animated {
+#hero .rotating>.animated {
   display: inline-block;
 }
 
@@ -180,6 +196,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
 #header {
   background: #111;
   padding: 20px 0;
@@ -201,7 +218,8 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
-#header #logo h1 a, #header #logo h1 a:hover {
+#header #logo h1 a,
+#header #logo h1 a:hover {
   color: #fff;
 }
 
@@ -230,8 +248,11 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
+
 /* Nav Menu Essentials */
-.nav-menu, .nav-menu * {
+
+.nav-menu,
+.nav-menu * {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -250,12 +271,12 @@ h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
 }
 
-.nav-menu > li {
+.nav-menu>li {
   float: left;
 }
 
-.nav-menu li:hover > ul,
-.nav-menu li.sfHover > ul {
+.nav-menu li:hover>ul,
+.nav-menu li.sfHover>ul {
   display: block;
 }
 
@@ -269,6 +290,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Nav Menu Arrows */
+
 .sf-arrows .sf-with-ul {
   padding-right: 30px;
 }
@@ -287,6 +309,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Nav Meu Container */
+
 #nav-menu-container {
   float: right;
   margin: 5px 0;
@@ -299,6 +322,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Nav Meu Styling */
+
 .nav-menu a {
   padding: 10px 15px;
   text-decoration: none;
@@ -310,7 +334,9 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
 }
 
-.nav-menu a:hover, .nav-menu li:hover > a, .nav-menu .menu-active > a {
+.nav-menu a:hover,
+.nav-menu li:hover>a,
+.nav-menu .menu-active>a {
   color: #03C4EB;
 }
 
@@ -341,6 +367,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Mobile Nav Toggle */
+
 #mobile-nav-toggle {
   position: fixed;
   right: 0;
@@ -366,6 +393,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Mobile Nav Styling */
+
 #mobile-nav {
   position: fixed;
   top: 0;
@@ -438,6 +466,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Mobile Nav body classes */
+
 body.mobile-nav-active {
   overflow: hidden;
 }
@@ -453,8 +482,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*--------------------------------------------------------------
 # Sections
 --------------------------------------------------------------*/
+
 /* Sections Common
 --------------------------------*/
+
 .section-title {
   font-size: 32px;
   color: #111;
@@ -478,6 +509,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Get Started Section
 --------------------------------*/
+
 #about {
   background: #fff;
   padding: 80px 0;
@@ -509,6 +541,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Services Section
 --------------------------------*/
+
 #services {
   background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/services-bg.jpg") fixed center center;
   background-size: cover;
@@ -559,6 +592,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Subscribe Section
 --------------------------------*/
+
 #subscribe {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/subscribe-bg.jpg) fixed center center;
   background-size: cover;
@@ -602,9 +636,18 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Coding Section
 --------------------------------*/
+
 #coding {
-  background: #fff;
+  background: #ede2c0;
   padding: 0px 0;
+}
+
+#coding .info {
+  padding-top: 100px;
+}
+
+#coding .image {
+  padding-top: 50px;
 }
 
 #coding .coding-item {
@@ -612,11 +655,11 @@ body.mobile-nav-active #mobile-nav-toggle {
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-  height: 600px;
+  height: 400px;
   width: 100%;
   display: table;
   overflow: hidden;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
 }
 
 #coding .coding-item .details {
@@ -665,8 +708,83 @@ body.mobile-nav-active #mobile-nav-toggle {
   transform: translate3d(0, 0, 0);
 }
 
+/* Dev-Club Section
+--------------------------------*/
+
+#dev-club {
+  background: #ede2c0;
+  padding: 0px 0;
+}
+
+#dev-club .info {
+  padding-top: 100px;
+}
+
+#dev-club .image {
+  padding-top: 80px;
+}
+
+#dev-club .dev-club-item {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 400px;
+  width: 100%;
+  display: table;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+#dev-club .dev-club-item .details {
+  height: 260px;
+  background: #fff;
+  display: table-cell;
+  vertical-align: middle;
+  opacity: 0;
+  transition: 0.3s;
+  text-align: center;
+}
+
+#dev-club .dev-club-item .details h4 {
+  font-size: 16px;
+  transition: opacity 0.3s, -webkit-transform 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+  -webkit-transform: translate3d(0, -15px, 0);
+  transform: translate3d(0, -15px, 0);
+  font-weight: 700;
+  color: #333333;
+}
+
+#dev-club .dev-club-item .details span {
+  display: block;
+  color: #666666;
+  font-size: 13px;
+  transition: opacity 0.3s, -webkit-transform 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+  -webkit-transform: translate3d(0, 15px, 0);
+  transform: translate3d(0, 15px, 0);
+}
+
+#dev-club .dev-club-item:hover .details {
+  opacity: 0.8;
+}
+
+#dev-club .dev-club-item:hover .details h4 {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+#dev-club .dev-club-item:hover .details span {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
 /* Gallery Section
 --------------------------------*/
+
 .gallery {
   background: #fff;
   padding: 80px 0;
@@ -732,6 +850,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Testimonials Section
 --------------------------------*/
+
 #testimonials {
   background: #f6f6f6;
   padding: 80px 0;
@@ -791,6 +910,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Team Section
 --------------------------------*/
+
 #team {
   background: #fff;
   padding: 80px 0 60px 0;
@@ -839,13 +959,14 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin: 0 2px;
 }
 
-#team .member .pic img{
+#team .member .pic img {
   border-radius: 50%;
   border-width: 100px;
 }
 
 /* Contact Section
 --------------------------------*/
+
 #contact {
   background: #f7f7f7;
   padding: 80px 0;
@@ -886,7 +1007,9 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin-bottom: 15px;
 }
 
-#contact .form #sendmessage.show, #contact .form #errormessage.show, #contact .form .show {
+#contact .form #sendmessage.show,
+#contact .form #errormessage.show,
+#contact .form .show {
   display: block;
 }
 
@@ -898,7 +1021,8 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 13px;
 }
 
-#contact .form input, #contact .form textarea {
+#contact .form input,
+#contact .form textarea {
   border-radius: 0;
   box-shadow: none;
 }
@@ -916,10 +1040,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 x
-
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+
 #footer {
   background: #111;
   padding: 30px 0;
