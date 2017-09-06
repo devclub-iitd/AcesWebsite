@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -25,6 +26,22 @@ app.use(session({
 
 // app.use(passport.initialize());
 // app.use(passport.session());
+
+// Code for nodeMailer
+function foo()
+{
+	console.log("foo");
+}
+app.use(bodyParser.urlencoded({
+	extended: true
+  }));
+  app.use(bodyParser.json());
+app.post('/index.html', function(req, res) {
+	console.log(req.body);
+	console.log("email by: " + req.body["name"]);
+	res.sendStatus(200);
+	//foo();
+});
 
  routes(app, passport);
 

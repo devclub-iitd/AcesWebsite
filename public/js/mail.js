@@ -22,3 +22,7 @@ transporter.sendMail(mailOptions, function(error, info){
         console.log('Email sent: ' + info.response);
     }
 });
+
+function processFeedback() {
+    console.log("processing");
+}
