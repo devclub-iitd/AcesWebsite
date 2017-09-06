@@ -3,7 +3,7 @@
 - [ ] Student Internship Blog
 - [ ] Ongoing projects in the CSE dept.
 - [ ] Create different sections for coding and dev club with subheadings.
-- [ ] Contact Us form gets mailed to someone.
+- [X] Contact Us form gets mailed to someone. Email: feedback.acesacm.iitd@gmail.com
 - [ ] Team dropdown in navbar displays the following items in order: current team, 2015-16 team, 2014-15 team. Each opens on a new page.
 - [ ] Create page for events. Displayed like a timeline from latest onwards. Each event links to photos of that event on a new page.
 - [ ] Gallery page. One image as a representative for each event. Clicking on it opens the event photos on a new page. Refer http://ees.iitd.ac.in/gallery.html

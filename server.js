@@ -54,14 +54,29 @@ function sendFeedback(){
 	});
 }
 
+/* NEVER TRUST THE USER FOR INPUT #SECURITY */
+/* ESCAPES "<script>alert("You are hacked!!")</script>" these types of inputs */
+function escapeHtml(text) {
+	var map = {
+	  '&': '&amp;',
+	  '<': '&lt;',
+	  '>': '&gt;',
+	  '"': '&quot;',
+	  "'": '&#039;'
+	};
+  
+	return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+  
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(bodyParser.json());
 app.post('/', function(req, res) {
 	//console.log(req.body);
-	mailOptions["subject"] = 'MESSAGE FROM WEBSITE: ' + req.body["subject"];
-	mailOptions["html"] = "<br /><p>" + req.body["message"] + "</p><br /><span>From :</span><br /><span>  " + req.body["name"] + "</span><br /><span>  " + req.body["email"] + "</span>";
+	mailOptions["subject"] = 'MESSAGE FROM WEBSITE: ' + escapeHtml(req.body["subject"]);
+	mailOptions["html"] = "<br /><p>" + escapeHtml(req.body["message"]) + "</p><br /><span>From :</span><br /><span>  "
+						   + escapeHtml(req.body["name"]) + "</span><br /><span>  " + escapeHtml(req.body["email"]) + "</span>";
 	res.sendStatus(200);
 	sendFeedback();
 });
