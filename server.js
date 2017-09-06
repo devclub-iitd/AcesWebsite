@@ -6,6 +6,7 @@ var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
+var nodemailer = require('nodemailer');
 
 var app = express();
 require('dotenv').load();
@@ -28,19 +29,41 @@ app.use(session({
 // app.use(passport.session());
 
 // Code for nodeMailer
-function foo()
-{
-	console.log("foo");
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'feedback.acesacmiitd@gmail.com',
+        pass: 'Ui98n$sN!' // The password is at server side and is not visible to the client
+    }
+});
+
+var mailOptions = {
+    from: 'feedback.acesacmiitd@gmail.com',
+    to: 'feedback.acesacmiitd@gmail.com',
+    subject: 'MESSAGE FROM WEBSITE',
+	html: 'Empty Feedback'
+};
+
+function sendFeedback(){
+	transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Email sent: ' + info.response);
+		}
+	});
 }
+
 app.use(bodyParser.urlencoded({
 	extended: true
-  }));
-  app.use(bodyParser.json());
-app.post('/index.html', function(req, res) {
-	console.log(req.body);
-	console.log("email by: " + req.body["name"]);
+}));
+app.use(bodyParser.json());
+app.post('/', function(req, res) {
+	//console.log(req.body);
+	mailOptions["subject"] = 'MESSAGE FROM WEBSITE: ' + req.body["subject"];
+	mailOptions["html"] = "<br /><p>" + req.body["message"] + "</p><br /><span>From :</span><br /><span>  " + req.body["name"] + "</span><br /><span>  " + req.body["email"] + "</span>";
 	res.sendStatus(200);
-	//foo();
+	sendFeedback();
 });
 
  routes(app, passport);
