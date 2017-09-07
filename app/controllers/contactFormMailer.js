@@ -1,4 +1,7 @@
+'use strict';
+
 var nodemailer = require('nodemailer');
+
 module.exports = {
     // Code for nodeMailer
     transporter: nodemailer.createTransport({
