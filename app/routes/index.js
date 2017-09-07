@@ -2,6 +2,7 @@
 
 var path = process.cwd();
 var contactFormMailer = require('../controllers/contactFormMailer.js');
+var galleryController = require('../controllers/galleryController.js');
 module.exports = function(app, passport) {
 
 	function isLoggedIn(req, res, next) {
@@ -32,5 +33,9 @@ module.exports = function(app, passport) {
 	app.route('/team')
 		.get(function(req, res) {
 			res.sendFile(path + '/public/team.html');
+		});
+	app.route('/images')
+		.get(function(req, res) {
+			res.send(galleryController.readDir());
 		});
 };
