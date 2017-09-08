@@ -107,4 +107,45 @@ jQuery(document).ready(function( $ ) {
       return false;
   });
 
+  // ajax for node mailer
+    $('form').submit(function() {
+        $.ajax({
+            type: 'POST',
+            method: 'POST',
+            url: '/',
+            data: { name: $(this).name.value,
+                    email: $(this).email.value,
+                    subject: $(this).subject.value,
+                    message: $(this).subject.value 
+            }
+        });
+        console.log("Thanks, for your valuable feedback!");
+        return false;
+    }); 
+    // Attach a submit handler to the form
+ /*   $( "#contactForm" ).submit(function( event ) {
+     
+      // Stop form from submitting normally
+      event.preventDefault();
+     
+      // Get some values from elements on the page:
+      var $form = $( this ),
+        name = $form.find( "input[name='name']" ).val(),
+        email = $form.find( "input[name='email']" ).val(),
+        subject = $form.find( "input[name='subject']" ).val(),
+        message = $form.find( "input[name='message']" ).val(),
+        url = $form.attr( "action" );
+     
+      // Send the data using post
+      var posting = $.post( url, {  name: name,
+                                    email: email,
+                                    subject: subject,
+                                    message: message
+                             });
+     
+      //Thank the user
+      posting.done(function( data ) {
+        alert("Thanks, for your valuable feedback!");
+      });
+    });*/
 });

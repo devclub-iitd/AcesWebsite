@@ -22,9 +22,11 @@ module.exports = function(app, passport) {
 			//console.log(req.body);
 			contactFormMailer.mailOptions["subject"] = 'MESSAGE FROM WEBSITE: ' + contactFormMailer.escapeHtml(req.body["subject"]);
 			contactFormMailer.mailOptions["html"] = "<br /><p>" + contactFormMailer.escapeHtml(req.body["message"]) + "</p><br /><span>From :</span><br /><span>  " +
-				contactFormMailer.escapeHtml(req.body["name"]) + "</span><br /><span>  " + contactFormMailer.escapeHtml(req.body["email"]) + "</span>";
+			contactFormMailer.escapeHtml(req.body["name"]) + "</span><br /><span>  " + contactFormMailer.escapeHtml(req.body["email"]) + "</span>";
 			res.sendStatus(200);
-			contactFormMailer.sendFeedback();
+			
+			//contactFormMailer.sendFeedback();
+			//res.redirect('/public/index.html');
 		});
 	app.route('/gallery')
 		.get(function(req, res) {
