@@ -5,14 +5,13 @@
     var gallery = document.querySelector('.gallery');
 
     function newImage(eventName, images) {
-        console.log(images);
         var li = document.createElement('li');
         var main = '';
         images.forEach(image => {
             if (image.split('.')[0] == 'main') main = image;
         });
         main = main || images[0];
-        li.innerHTML = '<h3>' + eventName + '</h3><a class="open_fancybox" href=' + '\"./img/events/' + eventName + '/' + main + '\"><img class="top" src=' + '\"./img/events/' + eventName + '/' + main + '\" width="260" height="200" /></a>';
+        li.innerHTML = '<h3>' + eventName + '</h3><a class="open_fancybox" href=' + '\"./img/events/' + eventName + '/' + main + '\"><img class="top img-responsive" src=' + '\"./img/events/' + eventName + '/' + main + '\" width="350" height="300" /></a>';
         gallery.append(li);
 
     }

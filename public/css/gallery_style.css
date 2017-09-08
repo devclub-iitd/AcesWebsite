@@ -92,7 +92,6 @@ ul h4 {
 
 #outer {
 	margin: 0 auto;
-	width: 1180px;
 }
 
 #banner {
@@ -193,8 +192,7 @@ ul h4 {
 }
 
 .dropotron li:hover,
-.dropotron li.active {
-}
+.dropotron li.active {}
 
 
 
@@ -212,22 +210,27 @@ ul h4 {
 // Gallery
 /////////////////////////////////////////////////////////////////////////// */
 
+#main {
+	text-align: center;
+}
+
 .gallery {
 	list-style: none;
-	margin: 0;
 	padding: 0;
+	margin: 0 auto;
 }
 
 .gallery li {
-	width: 260px;
-	float: left;
+	/*width: 260px;*/
+	/*float: left;*/
+	display: inline-block;
 	padding: 17px;
 	position: relative;
 }
 
 .gallery h3 {
 	position: absolute;
-	top: 182px;
+	/*top: 182px;*/
 	padding: 5px;
 	opacity: 0.85;
 	width: 250px;
@@ -236,7 +239,7 @@ ul h4 {
 }
 
 .gallery img {
-
+	border-radius: 10px;
 	margin: 0;
 }
 
