@@ -5,11 +5,16 @@ var nodemailer = require('nodemailer');
 module.exports = {
     // Code for nodeMailer
     transporter: nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+       // service: 'gmail',
+        port: 465,
+        secure: true,
         auth: {
             user: 'feedback.acesacmiitd@gmail.com',
             pass: 'Ui98n$sN!' // The password is at server side and is not visible to the client
-        }
+        },
+        proxy: 'http://proxy22.iitd.ac.in:3128',
+        https_proxy: 'https://proxy22.iitd.ac.in:3128'
     }),
 
     mailOptions: {
