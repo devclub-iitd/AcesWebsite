@@ -2,7 +2,7 @@
 - [X] Static HTML page with basic data
 - [ ] Student Internship Blog
 - [ ] Ongoing projects in the CSE dept.
-- [ ] Create different sections for coding and dev club with subheadings.
+- [X] Create different sections for coding and dev club with subheadings.
 - [X] Contact Us form gets mailed to someone. Email: feedback.acesacm.iitd@gmail.com
 - [ ] Team dropdown in navbar displays the following items in order: current team, 2015-16 team, 2014-15 team. Each opens on a new page.
 - [ ] Create page for events. Displayed like a timeline from latest onwards. Each event links to photos of that event on a new page.
