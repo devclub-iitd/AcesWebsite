@@ -36,12 +36,10 @@
         data.forEach(function(event, index) {
                 images[index+1] = [];
                 event.slice(1).forEach(function(image, pos) {
-                    if (image!=".DS_Store"){
-                        images[index+1].push({
-                            'href': './img/events/'+ event[0]+ '/' + image,
-                            'title': 'Gallery '+ event[0] + ' - ' + (pos + 1)
-                        });
-                    }
+                    images[index+1].push({
+                        'href': './img/events/'+ event[0]+ '/' + image,
+                        'title': 'Gallery '+ event[0] + ' - ' + (pos + 1)
+                    });
                 });
         });
         return images
