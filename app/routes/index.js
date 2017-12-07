@@ -94,7 +94,7 @@ module.exports = function(app, fs) {
 			req.files.bill.mv(path + '/public/bills/' + req.body.event + '_' + req.files.bill.name, function(err) {
 				if (err)
 					return res.status(500).send(err);
-				billController.addBill(req.body, path + '/public/bills/' + req.body.event + '_' + req.files.bill.name);
+				billController.addBill(req.body, '/bills/' + req.body.event + '_' + req.files.bill.name);
 				res.send('Bill uploaded!');
 			});
 		})
