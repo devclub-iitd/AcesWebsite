@@ -1,7 +1,7 @@
 'use strict';
 
 var Bill = require('../models/bills.js');
-
+var fs = require('fs');
 module.exports = {
     addBill: function(data, path) {
         var newBill = new Bill();
@@ -31,6 +31,9 @@ module.exports = {
     deleteBill: function(bill_id){
         Bill.findOneAndRemove({_id: bill_id}, function(err, doc){
             if(err) console.error(err);
+            fs.unlink("./public" + doc.billImagePath, function(err){
+                if(err) console.log(err);
+            });
         });
     },
     
