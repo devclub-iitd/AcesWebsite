@@ -58,7 +58,7 @@ module.exports = function(app, fs) {
 			if (!req.body.username || !req.body.password) {
 				res.send('login failed');
 			}
-			else if (req.body.username === "admin" || req.body.password === "admin") {
+			else if (req.body.username === "admin" && req.body.password === "admin") {
 				req.session.user = "admin";
 				req.session.admin = true;
 				res.redirect('/admin');
