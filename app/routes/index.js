@@ -4,6 +4,7 @@ var path = process.cwd();
 var contactFormMailer = require('../controllers/contactFormMailer.js');
 var galleryController = require('../controllers/galleryController.js');
 var unzip = require('unzip');
+var billController = require('../controllers/billController.js');
 module.exports = function(app, fs) {
 
 	function isLoggedIn(req, res, next) {
@@ -76,14 +77,39 @@ module.exports = function(app, fs) {
 			res.send("logout success!");
 		});
 	app.route('/pics')
-		.post(function(req, res) {
+		.post(auth, function(req, res) {
 			if (!req.files)
 				return res.status(400).send('No files were uploaded.');
 			req.files.file.mv(path + '/public/img/events/uploaded', function(err) {
 				if (err)
 					return res.status(500).send(err);
-				fs.createReadStream(path + '/public/img/events/uploaded').pipe(unzip.Extract({ path: path + '/public/img/events/'}));
+				fs.createReadStream(path + '/public/img/events/uploaded').pipe(unzip.Extract({ path: path + '/public/img/events/' }));
 				res.send('File uploaded!');
 			});
+		});
+	app.route('/bills')
+		.post(auth, function(req, res) {
+			if (!req.files)
+				return res.status(400).send('No files were uploaded.');
+			req.files.bill.mv(path + '/public/bills/' + req.body.event + '_' + req.files.bill.name, function(err) {
+				if (err)
+					return res.status(500).send(err);
+				billController.addBill(req.body, path + '/public/bills/' + req.body.event + '_' + req.files.bill.name);
+				res.send('Bill uploaded!');
+			});
+		})
+		.get(auth, function(req, res) {
+			billController.allBills().then(function(docs) {
+				res.send(docs);
+			});
+		});
+	app.route('/update')
+		.get(auth, function(req, res) {
+			billController.deleteBill(req.query.id);
+			res.send("deleted...");
+		})
+		.post(auth, function(req, res) {
+			billController.updateBill(req.body.bill_id);
+			res.send("updated...");
 		});
 };

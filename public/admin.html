@@ -29,11 +29,32 @@
         </form>
     </div>
     <div class="box">
-        <h1>Upload Bills</h1>
+        <h1>Upload Bills</h1><br>
+        <form action='/bills' method='post' enctype="multipart/form-data">
+            <input type="text" name="item" placeholder="item">
+            <input type="text" name="event" placeholder="event">
+            <input type="date" name="date" placeholder="date">
+            <input type="number" name="amount" placeholder="amount">
+            <input type="text" name="uploader" placeholder="name of uploader"><br><br>
+            <input type="file" name="bill">
+            <div><button class="btn">Upload</button></div>
+        </form>
     </div>
-
-    <p>Forgot your password? <u style="color:#f1c40f;">Click Here!</u></p>
-
+    <div class="box">
+        <h1>All Bills</h1><br>
+        <table style="width:100%" class="bill-list">
+            <tr>
+                <th>Item</th>
+                <th>Event</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Uplaoder</th>
+                <th>Reimbursed</th>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript" src="common/ajax-functions.js"></script>
+    <script type="text/javascript" src="controllers/onLoadControllerBills.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 </body>
 
