@@ -74,7 +74,7 @@ module.exports = function(app, fs) {
 	app.route('/logout')
 		.get(function(req, res) {
 			req.session.destroy();
-			res.send("logout success!");
+			res.redirect('/login');
 		});
 	app.route('/pics')
 		.post(auth, function(req, res) {

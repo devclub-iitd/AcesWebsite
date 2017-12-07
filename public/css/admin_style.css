@@ -107,3 +107,15 @@ th {
   font-weight:800;
   font-size:0.8em;
 }
+
+#home{
+    font-weight:800;
+    font-size:20px;
+    color: white;
+    margin: 5px;
+}
+#logout{
+    font-weight:800;
+    font-size:20px;
+    color: white;
+}
