@@ -29,19 +29,19 @@
         </div>
         <form action="/pics" method="post" enctype="multipart/form-data">
             <!--<input type="text" name="eventname" placeholder="Event name" class="email" />-->
-            <input type="file" name="file">
+            <input type="file" name="file" required>
             <div><button class="btn">Upload</button></div>
         </form>
     </div>
     <div class="box">
         <h1>Upload Bills</h1><br>
         <form action='/bills' method='post' enctype="multipart/form-data">
-            <input type="text" name="item" placeholder="item">
-            <input type="text" name="event" placeholder="event">
-            <input type="date" name="date" placeholder="date">
-            <input type="number" name="amount" placeholder="amount">
-            <input type="text" name="uploader" placeholder="name of uploader"><br><br>
-            <input type="file" name="bill">
+            <input type="text" name="item" placeholder="item" required>
+            <input type="text" name="event" placeholder="event" required>
+            <input type="date" name="date" placeholder="date" required>
+            <input type="number" name="amount" placeholder="amount" required>
+            <input type="text" name="uploader" placeholder="name of uploader" required><br><br>
+            <input type="file" name="bill" required>
             <div><button class="btn">Upload</button></div>
         </form>
     </div>

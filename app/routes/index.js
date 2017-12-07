@@ -78,7 +78,7 @@ module.exports = function(app, fs) {
 		});
 	app.route('/pics')
 		.post(auth, function(req, res) {
-			if (!req.files)
+			if (Object.keys(req.files).length === 0 && req.files.constructor === Object)
 				return res.status(400).send('No files were uploaded.');
 			req.files.file.mv(path + '/public/img/events/uploaded', function(err) {
 				if (err)
@@ -89,7 +89,7 @@ module.exports = function(app, fs) {
 		});
 	app.route('/bills')
 		.post(auth, function(req, res) {
-			if (!req.files)
+			if (Object.keys(req.files).length === 0 && req.files.constructor === Object)
 				return res.status(400).send('No files were uploaded.');
 			req.files.bill.mv(path + '/public/bills/' + req.body.event + '_' + req.files.bill.name, function(err) {
 				if (err)
