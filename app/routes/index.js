@@ -58,7 +58,7 @@ module.exports = function(app, fs) {
 			if (!req.body.username || !req.body.password) {
 				res.send('login failed');
 			}
-			else if (req.body.username === "admin" || req.body.password === "admin") {
+			else if (req.body.username === "admin" && req.body.password === "admin") {
 				req.session.user = "admin";
 				req.session.admin = true;
 				res.redirect('/admin');
@@ -78,7 +78,7 @@ module.exports = function(app, fs) {
 		});
 	app.route('/pics')
 		.post(auth, function(req, res) {
-			if (!req.files)
+			if (Object.keys(req.files).length === 0 && req.files.constructor === Object)
 				return res.status(400).send('No files were uploaded.');
 			req.files.file.mv(path + '/public/img/events/uploaded', function(err) {
 				if (err)
@@ -89,7 +89,7 @@ module.exports = function(app, fs) {
 		});
 	app.route('/bills')
 		.post(auth, function(req, res) {
-			if (!req.files)
+			if (Object.keys(req.files).length === 0 && req.files.constructor === Object)
 				return res.status(400).send('No files were uploaded.');
 			req.files.bill.mv(path + '/public/bills/' + req.body.event + '_' + req.files.bill.name, function(err) {
 				if (err)
