@@ -5,6 +5,8 @@ var contactFormMailer = require('../controllers/contactFormMailer.js');
 var galleryController = require('../controllers/galleryController.js');
 var unzip = require('unzip');
 var billController = require('../controllers/billController.js');
+var userController = require('../controllers/userController.js');
+
 module.exports = function(app, fs) {
 
 	function isLoggedIn(req, res, next) {
@@ -18,7 +20,14 @@ module.exports = function(app, fs) {
 
 	// Authentication and Authorization Middleware
 	var auth = function(req, res, next) {
-		if (req.session && req.session.user === "admin" && req.session.admin)
+		if (req.session && req.session.user)
+			return next();
+		else
+			return res.redirect('/login');
+	};
+
+	var adminAuth = function(req, res, next) {
+		if(req.session && req.session.admin)	
 			return next();
 		else
 			return res.redirect('/login');
@@ -58,21 +67,23 @@ module.exports = function(app, fs) {
 			if (!req.body.username || !req.body.password) {
 				res.send('login failed');
 			}
-			else if (req.body.username === "admin" && req.body.password === "admin") {
-				req.session.user = "admin";
-				req.session.admin = true;
-				res.redirect('/admin');
-			}
 			else {
-				res.send('login failed');
+				userController.findUser(req.body).then(function(user) {
+					req.session.user = user.username;
+					req.session.admin = user.admin;
+					if (user.admin) res.redirect('/admin');
+					else res.redirect('/user');
+				}, function(msg) {
+					res.send(msg);
+				});
 			}
 		});
 	app.route('/admin')
-		.get(auth, function(req, res) {
+		.get(adminAuth, function(req, res) {
 			res.sendFile(path + '/public/admin.html');
 		});
 	app.route('/logout')
-		.get(function(req, res) {
+		.get(auth, function(req, res) {
 			req.session.destroy();
 			res.redirect('/login');
 		});
@@ -98,18 +109,39 @@ module.exports = function(app, fs) {
 				res.send('Bill uploaded!');
 			});
 		})
-		.get(auth, function(req, res) {
+		.get(adminAuth, function(req, res) {
 			billController.allBills().then(function(docs) {
 				res.send(docs);
 			});
 		});
 	app.route('/update')
-		.get(auth, function(req, res) {
+		.get(adminAuth, function(req, res) {
 			billController.deleteBill(req.query.id);
 			res.send("deleted...");
 		})
-		.post(auth, function(req, res) {
+		.post(adminAuth, function(req, res) {
 			billController.updateBill(req.body.bill_id);
 			res.send("updated...");
+		});
+	app.route('/users')
+		.get(adminAuth, function(req, res) {
+			userController.allUsers().then(function(docs) {
+				var users = docs;
+				users.password = '';
+				res.send(users);
+			});
+		})
+		.post(adminAuth, function(req, res) {
+			userController.addUser(req.body);
+			res.redirect('/admin');
+		});
+	app.route('/user_del')
+		.get(adminAuth, function(req, res) {
+			userController.deleteUser(req.query.id);
+			res.send("deleted...");
+		});
+	app.route('/user')
+		.get(auth, function(req, res) {
+			res.sendFile(path + '/public/user.html');
 		});
 };
