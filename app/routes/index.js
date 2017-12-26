@@ -67,11 +67,6 @@ module.exports = function(app, fs) {
 			if (!req.body.username || !req.body.password) {
 				res.send('login failed');
 			}
-			else if (req.body.username === "admin" && req.body.password === "admin") {
-				req.session.user = "admin";
-				req.session.admin = true;
-				res.redirect('/admin');
-			}
 			else {
 				userController.findUser(req.body).then(function(user) {
 					req.session.user = user.username;
@@ -131,12 +126,14 @@ module.exports = function(app, fs) {
 	app.route('/users')
 		.get(adminAuth, function(req, res) {
 			userController.allUsers().then(function(docs) {
-				res.send(docs);
+				var users = docs;
+				users.password = '';
+				res.send(users);
 			});
 		})
 		.post(adminAuth, function(req, res) {
 			userController.addUser(req.body);
-			res.send("new user created");
+			res.redirect('/admin');
 		});
 	app.route('/user_del')
 		.get(adminAuth, function(req, res) {

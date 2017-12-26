@@ -15,7 +15,6 @@
 
         allUsersPromise.then(function(data) {
             data.forEach(function(user) {
-                console.log(user);
                 var tr = document.createElement('tr');
                 tr.setAttribute('class', 'bill-item');
                 tr.innerHTML = "<td>" + user.name + "</td><td>" + user.username + "</td><td>" + user.admin + "</td><td><button class='btn2 userdel' " + "id =" + user._id + ">delete user</button></td>";
