@@ -9,6 +9,7 @@ var session = require('express-session');
 var nodemailer = require('nodemailer');
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
+var bcrypt = require('bcrypt');
 
 var app = express();
 require('dotenv').load();

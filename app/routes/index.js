@@ -5,6 +5,8 @@ var contactFormMailer = require('../controllers/contactFormMailer.js');
 var galleryController = require('../controllers/galleryController.js');
 var unzip = require('unzip');
 var billController = require('../controllers/billController.js');
+var userController = require('../controllers/userController.js');
+
 module.exports = function(app, fs) {
 
 	function isLoggedIn(req, res, next) {
@@ -111,5 +113,21 @@ module.exports = function(app, fs) {
 		.post(auth, function(req, res) {
 			billController.updateBill(req.body.bill_id);
 			res.send("updated...");
+		});
+
+	app.route('/users')
+		.get(auth, function(req, res) {
+			userController.allUsers().then(function(docs) {
+				res.send(docs);
+			});
+		})
+		.post(auth, function(req, res) {
+			userController.addUser(req.body);
+			res.send("new user creted");
+		});
+	app.route('/user_del')
+		.get(auth, function(req, res) {
+			userController.deleteUser(req.query.id);
+			res.send("deleted...");
 		});
 };
