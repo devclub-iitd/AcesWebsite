@@ -68,10 +68,10 @@ module.exports = function(app, fs) {
 				res.send('login failed');
 			}
 			else if (req.body.username === "admin" && req.body.password === "admin") {
- -				req.session.user = "admin";
- -				req.session.admin = true;
- -				res.redirect('/admin');
- -			}
+ 			req.session.user = "admin";
+ 			req.session.admin = true;
+ 			res.redirect('/admin');
+ 			}
 			else {
 				userController.findUser(req.body).then(function(user) {
 					req.session.user = user.username;

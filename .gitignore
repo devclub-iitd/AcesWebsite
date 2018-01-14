@@ -1,5 +1,7 @@
 node_modules/
 .eslintrc
 .env
+data/
 #Ignore all Mac Files
 .DS_Store
+
