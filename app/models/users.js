@@ -7,7 +7,10 @@ var User = new Schema({
 	name : String,
 	username: String,
 	password: String,
-	admin: Boolean
+	admin: Boolean,
+	fbid: String,
+	email: String,
+	imagepath: String
 });
 
 module.exports = mongoose.model('User', User);
