@@ -36,39 +36,7 @@
 		<div id="outer">
 			<div id="preloader"></div>
 			<header id="header">
-				<div class="container">
-
-					<div id="logo" class="pull-left">
-						<a href="#hero">
-							<img src="./img/logo.png" alt="" title="" /></img>
-						</a>
-						<!-- Uncomment below if you prefer to use a text image -->
-						<!--<h1><a href="#hero">Header 1</a></h1>-->
-					</div>
-
-					<nav id="nav-menu-container">
-						<ul class="nav-menu">
-							<li><a href="./index.html">Home</a></li>
-							<li><a href="/index.html#about">About us</a></li>
-							<li class="menu-has-children"><a>Endeavours</a>
-								<ul>
-									<li class="menu-has-children"><a>Newsletter</a>
-										<ul>
-											<li><a href="Newsletters/Nov2014.pdf" target="_blank">November 2014</a></li>
-										</ul>
-									</li>
-									<li><a href="/index.html#coding">Coding Club</a></li>
-									<li><a href="/index.html#coding">Dev Club</a></li>
-								</ul>
-							</li>
-							<li class="menu-active"><a href="#">Gallery</a></li>
-							<li><a href="/events.html">Events</a></li>
-							<li><a href="/team.html">Team</a></li>
-							<li><a href="#contact">Contact Us</a></li>
-						</ul>
-					</nav>
-					<!-- #nav-menu-container -->
-				</div>
+				<% include ./header.ejs %>
 			</header>
 			<!-- #header -->
 			<!--<div id="logo">
@@ -205,7 +173,7 @@
 
 				<ul class="gallery">
 
-			<!-- 			<li>
+					<!-- 			<li>
 					<h3>Event 1</h3>
 					<a class="open_fancybox" rel="gallery1" href="./img/events/event1/main.jpg"><img class="top" src="./img/events/event1/main.jpg" width="260" height="200" title="This is photo 1" alt="" /></a>
 

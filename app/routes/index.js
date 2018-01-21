@@ -49,7 +49,7 @@ module.exports = function(app, fs) {
 		});
 	app.route('/gallery')
 		.get(function(req, res) {
-			res.sendFile(path + '/public/gallery.html');
+			res.render(path + '/public/gallery');
 		});
 	app.route('/team')
 		.get(function(req, res) {
@@ -58,7 +58,7 @@ module.exports = function(app, fs) {
 	app.route('/events')
 		.get(function(req, res){
 			res.render(path + '/public/events');
-		})
+		});
 	app.route('/images')
 		.get(function(req, res) {
 			res.send(galleryController.readDir());
