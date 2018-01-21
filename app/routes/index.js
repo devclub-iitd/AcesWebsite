@@ -53,7 +53,12 @@ module.exports = function(app, fs) {
 		});
 	app.route('/team')
 		.get(function(req, res) {
-			res.render(path + '/public/team');
+			userController.allUsers().then(function(docs) {
+				var users = docs;
+				users.password = '';
+				console.log(users);
+				res.render(path + '/public/team', {team : users});
+			});
 		});
 	app.route('/events')
 		.get(function(req, res) {

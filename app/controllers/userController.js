@@ -20,6 +20,7 @@ module.exports = {
             newUser.fbid = data.fb;
             newUser.email = data.email;
             newUser.imagepath = path;
+            newUser.role = data.role;
             newUser.save(function(err) {
                 if (err) {
                     throw err;

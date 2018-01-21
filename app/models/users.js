@@ -10,7 +10,8 @@ var User = new Schema({
 	admin: Boolean,
 	fbid: String,
 	email: String,
-	imagepath: String
+	imagepath: String,
+	role: String
 });
 
 module.exports = mongoose.model('User', User);
