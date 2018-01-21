@@ -35,7 +35,7 @@ module.exports = function(app, fs) {
 
 	app.route('/')
 		.get(function(req, res) {
-			res.sendFile(path + '/public/index.html');
+			res.render(path + '/public/index');
 		})
 		.post(function(req, res) {
 			//console.log(req.body);
@@ -53,8 +53,12 @@ module.exports = function(app, fs) {
 		});
 	app.route('/team')
 		.get(function(req, res) {
-			res.sendFile(path + '/public/team.html');
+			res.render(path + '/public/team');
 		});
+	app.route('/events')
+		.get(function(req, res){
+			res.render(path + '/public/events');
+		})
 	app.route('/images')
 		.get(function(req, res) {
 			res.send(galleryController.readDir());
@@ -67,11 +71,6 @@ module.exports = function(app, fs) {
 			if (!req.body.username || !req.body.password) {
 				res.send('login failed');
 			}
-			else if (req.body.username === "admin" && req.body.password === "admin") {
- 			req.session.user = "admin";
- 			req.session.admin = true;
- 			res.redirect('/admin');
- 			}
 			else {
 				userController.findUser(req.body).then(function(user) {
 					req.session.user = user.username;

@@ -18,7 +18,10 @@ require('dotenv').load();
 mongoose.connect(process.env.MONGO_URI);
 mongoose.Promise = global.Promise;
 
-app.use('/', express.static(process.cwd() + '/public'))
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+app.use('/', express.static(process.cwd() + '/public'));
 app.use('.', express.static(process.cwd())); app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/common', express.static(process.cwd() + '/app/common'));
 app.use(session({
