@@ -27,7 +27,7 @@ module.exports = function(app, fs) {
 	};
 
 	var adminAuth = function(req, res, next) {
-		if(req.session && req.session.admin)	
+		if (req.session && req.session.admin)
 			return next();
 		else
 			return res.redirect('/login');
@@ -56,7 +56,7 @@ module.exports = function(app, fs) {
 			res.render(path + '/public/team');
 		});
 	app.route('/events')
-		.get(function(req, res){
+		.get(function(req, res) {
 			res.render(path + '/public/events');
 		});
 	app.route('/images')
@@ -72,9 +72,9 @@ module.exports = function(app, fs) {
 				res.send('login failed');
 			}
 			else if (req.body.username === "admin" && req.body.password === "admin") {
- 				req.session.user = "admin";
- 				req.session.admin = true;
- 				res.redirect('/admin');
+				req.session.user = "admin";
+				req.session.admin = true;
+				res.redirect('/admin');
 			}
 			else {
 				userController.findUser(req.body).then(function(user) {
@@ -141,13 +141,17 @@ module.exports = function(app, fs) {
 			});
 		})
 		.post(adminAuth, function(req, res) {
-			userController.addUser(req.body);
-			res.redirect('/admin');
+			req.files.pic.mv(path + '/public/team_pics/' + req.body.name + '_' + req.files.pic.name, function(err) {
+				if (err)
+					return res.status(500).send(err);
+				userController.addUser(req.body, '/team_pics/' + req.body.name + '_' + req.files.pic.name);
+				res.redirect('/admin');
+			});
 		});
 	app.route('/user_del')
 		.get(adminAuth, function(req, res) {
 			userController.deleteUser(req.query.id);
-			res.send("deleted...");
+			res.redirect("/admin");
 		});
 	app.route('/user')
 		.get(auth, function(req, res) {

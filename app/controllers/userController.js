@@ -6,7 +6,7 @@ const saltRounds = 10;
 
 module.exports = {
 
-    addUser: function(data) {
+    addUser: function(data, path) {
         bcrypt.hash(data.password, saltRounds, function(err, hash) {
             if (err) throw err;
             var newUser = new User();
@@ -17,7 +17,9 @@ module.exports = {
                 newUser.admin = true;
             else
                 newUser.admin = false;
-
+            newUser.fbid = data.fb;
+            newUser.email = data.email;
+            newUser.imagepath = path;
             newUser.save(function(err) {
                 if (err) {
                     throw err;
