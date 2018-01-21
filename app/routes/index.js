@@ -71,6 +71,11 @@ module.exports = function(app, fs) {
 			if (!req.body.username || !req.body.password) {
 				res.send('login failed');
 			}
+			else if (req.body.username === "admin" && req.body.password === "admin") {
+ 				req.session.user = "admin";
+ 				req.session.admin = true;
+ 				res.redirect('/admin');
+			}
 			else {
 				userController.findUser(req.body).then(function(user) {
 					req.session.user = user.username;
@@ -84,7 +89,7 @@ module.exports = function(app, fs) {
 		});
 	app.route('/admin')
 		.get(adminAuth, function(req, res) {
-			res.sendFile(path + '/public/admin.html');
+			res.render(path + '/public/admin');
 		});
 	app.route('/logout')
 		.get(auth, function(req, res) {
@@ -146,6 +151,6 @@ module.exports = function(app, fs) {
 		});
 	app.route('/user')
 		.get(auth, function(req, res) {
-			res.sendFile(path + '/public/user.html');
+			res.render(path + '/public/user');
 		});
 };

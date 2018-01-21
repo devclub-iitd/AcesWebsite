@@ -1,0 +1,15 @@
+        <br>
+        <h1>Upload pics</h1>
+        <div>
+            Instructions:
+            <ul style="list-style-type: none;">
+                <li>Add all images to a folder with name as the EVENT NAME</li>
+                <li>The folder can have an image with name 'main.jpg' for event preview</li>
+                <li>Zip the folder as EVENTNAME.zip and upload it</li>
+            </ul>
+        </div>
+        <form action="/pics" method="post" enctype="multipart/form-data">
+            <!--<input type="text" name="eventname" placeholder="Event name" class="email" />-->
+            <input type="file" name="file" required>
+            <div><button class="btn">Upload</button></div>
+        </form>
