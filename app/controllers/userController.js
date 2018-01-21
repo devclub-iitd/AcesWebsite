@@ -2,6 +2,7 @@
 
 var User = require('../models/users.js');
 var bcrypt = require('bcrypt');
+var fs = require('fs');
 const saltRounds = 10;
 
 module.exports = {
@@ -41,6 +42,9 @@ module.exports = {
     deleteUser: function(user_id) {
         User.findOneAndRemove({ _id: user_id }, function(err, doc) {
             if (err) console.error(err);
+            fs.unlink("./public" + doc.imagepath, function(err){
+                if(err) console.log(err);
+            });
             console.log(doc);
         });
     },
