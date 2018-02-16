@@ -146,10 +146,10 @@ module.exports = function(app, fs) {
 			});
 		})
 		.post(adminAuth, function(req, res) {
-			req.files.pic.mv(path + '/public/team_pics/' + req.body.name + '_' + req.files.pic.name, function(err) {
+			req.files.pic.mv(path + '/public/team_pics/' + req.body.username + '_' + req.files.pic.name, function(err) {
 				if (err)
 					return res.status(500).send(err);
-				userController.addUser(req.body, '/team_pics/' + req.body.name + '_' + req.files.pic.name);
+				userController.addUser(req.body, '/team_pics/' + req.body.username + '_' + req.files.pic.name);
 				res.redirect('/admin');
 			});
 		});
