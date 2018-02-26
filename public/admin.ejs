@@ -41,8 +41,8 @@
         <h1>Create a new User</h1>
         <form action='/users' method='post' enctype="multipart/form-data">
             <input type="text" name="name" placeholder="full name" required>
-            <input type="text" name="username" placeholder="username" required>
-            <input type="password" name="password" placeholder="password" required><br><br>
+            <input type="text" name="username" placeholder="username" pattern="[a-zA-Z0-9!@#$%^*_|]{6,25}" title="username without any spaces between 6 to 25 characters" required>
+            <input type="password" name="password" placeholder="password" pattern="[a-zA-Z0-9!@#$_]{6,25}" title="password without any spaces between 6 to 25 characters(!, @, #, $, _, allowed" required><br><br>
             <input type="text" name="role" placeholder="role in the team" required>
             <input type="email" name="email" placeholder="email id" required>
             <input type="text" name="fb" placeholder="full link to facebook profile" required>

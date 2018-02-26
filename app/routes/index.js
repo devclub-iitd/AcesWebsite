@@ -108,11 +108,18 @@ module.exports = function(app, fs) {
 		.post(auth, function(req, res) {
 			if (Object.keys(req.files).length === 0 && req.files.constructor === Object)
 				return res.status(400).send('No files were uploaded.');
+			else if (req.files.file.name.slice(-3) != 'zip')
+				return res.send('Please upload a zip file');
 			req.files.file.mv(path + '/public/img/events/uploaded', function(err) {
 				if (err)
 					return res.status(500).send(err);
-				logger.info('Pics uploaded by= ' + req.session.user + ' Filename= ' + req.files.file);
-				fs.createReadStream(path + '/public/img/events/uploaded').pipe(unzip.Extract({ path: path + '/public/img/events/' }));
+				logger.info('Pics uploaded by= ' + req.session.user + ' Filename= ' + req.files.file.name);
+				try {
+					fs.createReadStream(path + '/public/img/events/uploaded').pipe(unzip.Extract({ path: path + '/public/img/events/' }));
+				}
+				catch(err){
+					res.send('Please upload a valid zip file');
+				}
 				if (req.session.admin)
 					res.redirect('/admin');
 				else
