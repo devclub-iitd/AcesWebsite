@@ -134,7 +134,7 @@ module.exports = function(app, fs) {
 					res.redirect('/user');
 			});
 		})
-		.get(adminAuth, function(req, res) {
+		.get(auth, function(req, res) {
 			billController.allBills().then(function(docs) {
 				res.send(docs);
 			});
