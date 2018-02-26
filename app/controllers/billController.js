@@ -5,13 +5,13 @@ var fs = require('fs');
 var logger = require('../../logger');
 
 module.exports = {
-    addBill: function(data, path) {
+    addBill: function(data, uploader, path) {
         var newBill = new Bill();
         newBill.item = data.item;
         newBill.event = data.event;
         newBill.date = new Date(data.date).toLocaleDateString();
         newBill.amount = data.amount;
-        newBill.uploader = data.uploader;
+        newBill.uploader = uploader;
         newBill.billImagePath = path;
         newBill.reimbursed = "No";
         logger.info('New Bill= ' + path);
