@@ -10,6 +10,8 @@ var nodemailer = require('nodemailer');
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 var bcrypt = require('bcrypt');
+var morgan = require('morgan');
+
 
 var app = express();
 require('dotenv').load();
@@ -31,6 +33,17 @@ app.use(session({
 }));
 app.use(fileUpload({ safeFileNames: true, preserveExtension: true }));
 
+// logging mechanism
+app.use(morgan('dev', {
+    skip: function (req, res) {
+        return res.statusCode < 400
+    }, stream: process.stderr
+}));
+app.use(morgan('dev', {
+    skip: function (req, res) {
+        return res.statusCode >= 400
+    }, stream: process.stdout
+}));
 // app.use(passport.initialize());
 // app.use(passport.session());
 

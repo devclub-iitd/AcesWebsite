@@ -4,4 +4,4 @@ node_modules/
 data/
 #Ignore all Mac Files
 .DS_Store
-
+combined.log

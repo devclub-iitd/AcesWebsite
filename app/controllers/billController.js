@@ -2,6 +2,8 @@
 
 var Bill = require('../models/bills.js');
 var fs = require('fs');
+var logger = require('../../logger');
+
 module.exports = {
     addBill: function(data, path) {
         var newBill = new Bill();
@@ -12,6 +14,7 @@ module.exports = {
         newBill.uploader = data.uploader;
         newBill.billImagePath = path;
         newBill.reimbursed = "No";
+        logger.info('New Bill= ' + path);
         newBill.save(function(err) {
             if (err) {
                 throw err;
@@ -31,6 +34,7 @@ module.exports = {
     deleteBill: function(bill_id){
         Bill.findOneAndRemove({_id: bill_id}, function(err, doc){
             if(err) console.error(err);
+            logger.info('Deleted Bill: ' + doc.billImagePath);
             fs.unlink("./public" + doc.billImagePath, function(err){
                 if(err) console.log(err);
             });
@@ -40,6 +44,7 @@ module.exports = {
     updateBill: function(bill_id){
         Bill.findOneAndUpdate({_id: bill_id}, { $set: {reimbursed : "Yes"}}, {new: true}, function(err, doc){
             if(err) console.error(err);
+            logger.info('Marked reimbursed Bill: ' + doc.billImagePath);
         });
     },
 };

@@ -6,6 +6,7 @@ var galleryController = require('../controllers/galleryController.js');
 var unzip = require('unzip');
 var billController = require('../controllers/billController.js');
 var userController = require('../controllers/userController.js');
+var logger = require('../../logger');
 
 module.exports = function(app, fs) {
 
@@ -57,7 +58,7 @@ module.exports = function(app, fs) {
 				var users = docs;
 				users.password = '';
 				console.log(users);
-				res.render(path + '/public/team', {team : users});
+				res.render(path + '/public/team', { team: users });
 			});
 		});
 	app.route('/events')
@@ -77,6 +78,7 @@ module.exports = function(app, fs) {
 				res.send('login failed');
 			}
 			else if (req.body.username === "admin" && req.body.password === "admin") {
+				logger.info('admin login');
 				req.session.user = "admin";
 				req.session.admin = true;
 				res.redirect('/admin');
@@ -85,6 +87,7 @@ module.exports = function(app, fs) {
 				userController.findUser(req.body).then(function(user) {
 					req.session.user = user.username;
 					req.session.admin = user.admin;
+					logger.info('Login by= ' + req.session.user + ' isAdmin= ' + req.session.admin);
 					if (user.admin) res.redirect('/admin');
 					else res.redirect('/user');
 				}, function(msg) {
@@ -108,19 +111,27 @@ module.exports = function(app, fs) {
 			req.files.file.mv(path + '/public/img/events/uploaded', function(err) {
 				if (err)
 					return res.status(500).send(err);
+				logger.info('Pics uploaded by= ' + req.session.user + ' Filename= ' + req.files.file);
 				fs.createReadStream(path + '/public/img/events/uploaded').pipe(unzip.Extract({ path: path + '/public/img/events/' }));
-				res.send('File uploaded!');
+				if (req.session.admin)
+					res.redirect('/admin');
+				else
+					res.redirect('/user');
 			});
 		});
 	app.route('/bills')
 		.post(auth, function(req, res) {
 			if (Object.keys(req.files).length === 0 && req.files.constructor === Object)
 				return res.status(400).send('No files were uploaded.');
+			logger.info('Bill uploaded by= ' + req.session.user);
 			req.files.bill.mv(path + '/public/bills/' + req.body.event + '_' + req.files.bill.name, function(err) {
 				if (err)
 					return res.status(500).send(err);
 				billController.addBill(req.body, '/bills/' + req.body.event + '_' + req.files.bill.name);
-				res.send('Bill uploaded!');
+				if (req.session.admin)
+					res.redirect('/admin');
+				else
+					res.redirect('/user');
 			});
 		})
 		.get(adminAuth, function(req, res) {
@@ -130,12 +141,14 @@ module.exports = function(app, fs) {
 		});
 	app.route('/update')
 		.get(adminAuth, function(req, res) {
+			logger.info('Bill deleted by= ' + req.session.user);
 			billController.deleteBill(req.query.id);
-			res.send("deleted...");
+			res.redirect("/admin");
 		})
 		.post(adminAuth, function(req, res) {
+			logger.info('Bill marked reimbursed by= ' + req.session.user);
 			billController.updateBill(req.body.bill_id);
-			res.send("updated...");
+			res.redirect("/admin");
 		});
 	app.route('/users')
 		.get(adminAuth, function(req, res) {
@@ -149,12 +162,14 @@ module.exports = function(app, fs) {
 			req.files.pic.mv(path + '/public/team_pics/' + req.body.username + '_' + req.files.pic.name, function(err) {
 				if (err)
 					return res.status(500).send(err);
+				logger.info('User added by= ' + req.session.user + ' username= ' + req.body.username);
 				userController.addUser(req.body, '/team_pics/' + req.body.username + '_' + req.files.pic.name);
 				res.redirect('/admin');
 			});
 		});
 	app.route('/user_del')
 		.get(adminAuth, function(req, res) {
+			logger.info('User deleted by= ' + req.session.user);
 			userController.deleteUser(req.query.id);
 			res.redirect("/admin");
 		});
