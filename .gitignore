@@ -5,3 +5,5 @@ data/
 #Ignore all Mac Files
 .DS_Store
 combined.log
+public/team_pics/
+public/img/events/

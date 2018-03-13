@@ -924,7 +924,13 @@ body.mobile-nav-active #mobile-nav-toggle {
 #team .member .pic {
   margin-bottom: 15px;
   overflow: hidden;
-  height: 260px;
+  /* height: 260px; */
+}
+
+@media only screen and (min-width: 1000px) {
+  #team .member .pic {
+      height: 260px;
+  }
 }
 
 #team .member .pic img {

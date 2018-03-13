@@ -28,7 +28,7 @@ module.exports = function(app, fs) {
 	};
 
 	var adminAuth = function(req, res, next) {
-		if (req.session && req.session.admin)
+    if (req.session && req.session.admin)
 			return next();
 		else
 			return res.redirect('/login');
@@ -57,7 +57,7 @@ module.exports = function(app, fs) {
 			userController.allUsers().then(function(docs) {
 				var users = docs;
 				users.password = '';
-				console.log(users);
+				// console.log(users);
 				res.render(path + '/public/team', { team: users });
 			});
 		});

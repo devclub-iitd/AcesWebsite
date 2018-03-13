@@ -65,10 +65,10 @@
       </div>
 
       <% team.forEach(function(user, index) { %>
-        <% if(index%3 == 0) {%>
+        <% if(index%4 == 0) {%>
           <div class="row">
         <% } %>
-          <div class="col-md-3">
+          <div class="col-md-3 col-sm-6 col-sm-offset-3 col-md-offset-0">
             <div class="member">
               <div class="pic"><a href=<%= user.fbid %>><img src=<%= user.imagepath %> alt=""></a></div>
               <h4><%= user.name %></h4>
@@ -79,7 +79,7 @@
               </div>
             </div>
           </div>
-        <% if(index%3 == 2) {%>
+        <% if(index%4 == 3) {%>
           </div>
         <% } %>
       <% }); %>
