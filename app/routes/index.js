@@ -6,6 +6,7 @@ var galleryController = require('../controllers/galleryController.js');
 var unzip = require('unzip');
 var billController = require('../controllers/billController.js');
 var userController = require('../controllers/userController.js');
+var bankController = require('../controllers/bankController.js');
 var logger = require('../../logger');
 
 module.exports = function(app, fs) {
@@ -28,7 +29,7 @@ module.exports = function(app, fs) {
 	};
 
 	var adminAuth = function(req, res, next) {
-    if (req.session && req.session.admin)
+		if (req.session && req.session.admin)
 			return next();
 		else
 			return res.redirect('/login');
@@ -97,7 +98,10 @@ module.exports = function(app, fs) {
 		});
 	app.route('/admin')
 		.get(adminAuth, function(req, res) {
-			res.render(path + '/public/admin');
+			bankController.getAmount().then(function(amt) {
+				console.log(amt + "df");
+				res.render(path + '/public/admin', {amount: amt});
+			});
 		});
 	app.route('/logout')
 		.get(auth, function(req, res) {
@@ -117,7 +121,7 @@ module.exports = function(app, fs) {
 				try {
 					fs.createReadStream(path + '/public/img/events/uploaded').pipe(unzip.Extract({ path: path + '/public/img/events/' }));
 				}
-				catch(err){
+				catch (err) {
 					res.send('Please upload a valid zip file');
 				}
 				if (req.session.admin)
@@ -184,4 +188,10 @@ module.exports = function(app, fs) {
 		.get(auth, function(req, res) {
 			res.render(path + '/public/user');
 		});
+	app.route('/bank')
+		.post(adminAuth, function(req, res) {
+			bankController.updateAmount(req.body.amount);
+			res.redirect('/admin');
+		});
+
 };

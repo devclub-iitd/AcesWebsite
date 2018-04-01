@@ -61,6 +61,22 @@
             </tr>
         </table>
     </div>
+    <div class="box">
+        <h1>Bank Account Details</h1><br>
+        <h5 id='curbalance'>Current Balance =<%= amount %></h5>
+        <hr>
+        <h5>Withdrawal request initiation form</h5><br>
+        <form action='/bank' method='post' enctype="multipart/form-data">
+            <input type="number" name="amount" placeholder="amount" required>
+            <button class="btn">Submit</button>
+        </form>
+        <hr>
+        <h5>Amount deposited</h5>
+        <form action='/bank' method='post' enctype="multipart/form-data">
+            <input type="number" name="amount" placeholder="amount" required>
+            <button class="btn">Submit</button>
+        </form>
+    </div>
     <script type="text/javascript" src="common/ajax-functions.js"></script>
     <script type="text/javascript" src="controllers/onLoadControllerBills.js"></script>
     <script type="text/javascript" src="controllers/onLoadControllerUsers.js"></script>
