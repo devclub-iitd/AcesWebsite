@@ -23,10 +23,10 @@ module.exports = {
                     });
                 }
                 else {
-                    console.log(doc);
                     resolve(doc.amount);
                 }
             });
+
         });
     },
     updateAmount: function(incr) {

@@ -99,7 +99,6 @@ module.exports = function(app, fs) {
 	app.route('/admin')
 		.get(adminAuth, function(req, res) {
 			bankController.getAmount().then(function(amt) {
-				console.log(amt + "df");
 				res.render(path + '/public/admin', {amount: amt});
 			});
 		});
