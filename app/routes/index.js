@@ -3,10 +3,11 @@
 var path = process.cwd();
 var contactFormMailer = require('../controllers/contactFormMailer.js');
 var galleryController = require('../controllers/galleryController.js');
-var unzip = require('unzip');
 var billController = require('../controllers/billController.js');
 var userController = require('../controllers/userController.js');
 var bankController = require('../controllers/bankController.js');
+var withdrawController = require('../controllers/withdrawController.js');
+var unzip = require('unzip');
 var logger = require('../../logger');
 
 module.exports = function(app, fs) {
@@ -99,7 +100,7 @@ module.exports = function(app, fs) {
 	app.route('/admin')
 		.get(adminAuth, function(req, res) {
 			bankController.getAmount().then(function(amt) {
-				res.render(path + '/public/admin', {amount: amt});
+				res.render(path + '/public/admin', { amount: amt });
 			});
 		});
 	app.route('/logout')
@@ -191,6 +192,17 @@ module.exports = function(app, fs) {
 		.post(adminAuth, function(req, res) {
 			bankController.updateAmount(req.body.amount);
 			res.redirect('/admin');
+		});
+	app.route('/withdraw')
+		.post(adminAuth, function(req, res) {
+			withdrawController.addWithdraw(req.body, req.session.user);
+			res.redirect('/admin');
+
+		})
+		.get(adminAuth, function(req, res) {
+			withdrawController.allWithdraw().then(function(data) {
+				res.send(data);
+			});
 		});
 
 };
