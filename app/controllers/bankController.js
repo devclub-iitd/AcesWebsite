@@ -12,6 +12,7 @@ module.exports = {
                     var newBank = new Bank();
                     newBank.name = 'aces';
                     newBank.amount = 0;
+                    newBank.amountCollected = 0;
                     logger.info('New bank account created');
                     newBank.save(function(err) {
                         if (err) {
@@ -33,7 +34,7 @@ module.exports = {
         Bank.findOne({ 'name': 'aces' }, function(err, doc) {
             if (err) throw err;
 
-            var newAmount = doc.amount + incr;
+            var newAmount = doc.amount + Number(incr);
             Bank.findOneAndUpdate({ 'name': 'aces' }, { $set: { amount: newAmount } }, function(err, doc) {
                 if (err) console.error(err);
                 logger.info('Bank Balance changed by: ' + Number(incr));

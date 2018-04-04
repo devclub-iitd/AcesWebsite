@@ -11,14 +11,15 @@ var fileUpload = require('express-fileupload');
 var fs = require('fs');
 var bcrypt = require('bcrypt');
 var morgan = require('morgan');
+var User = require('./app/models/users.js');
 
 
 var app = express();
 require('dotenv').load();
-// require('./app/config/passport')(passport);
 
 mongoose.connect(process.env.MONGO_URI);
 mongoose.Promise = global.Promise;
+
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -36,16 +37,14 @@ app.use(fileUpload({ safeFileNames: true, preserveExtension: true }));
 // logging mechanism
 app.use(morgan('dev', {
     skip: function (req, res) {
-        return res.statusCode < 400
+        return res.statusCode < 400;
     }, stream: process.stderr
 }));
 app.use(morgan('dev', {
     skip: function (req, res) {
-        return res.statusCode >= 400
+        return res.statusCode >= 400;
     }, stream: process.stdout
 }));
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 app.use(bodyParser.urlencoded({
 	extended: true

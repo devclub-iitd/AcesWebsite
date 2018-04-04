@@ -3,10 +3,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Bank = new Schema({
+var Collected = new Schema({
     name: String,
     amount: Number,
-    amountCollected: Number
+    purpose: String
 });
 
-module.exports = mongoose.model('Bank', Bank);
+module.exports = mongoose.model('Collected', Collected);
