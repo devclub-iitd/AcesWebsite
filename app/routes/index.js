@@ -87,14 +87,14 @@ module.exports = function(app, fs) {
 			if (!req.body.username || !req.body.password) {
 				res.send('login failed');
 			}
-			else if (req.body.username === "admin" && req.body.password === "admin") {
+			else if (req.body.username === process.env.USERNAME_ADMIN && req.body.password === process.env.PASSWORD_ADMIN) {
 				logger.info('admin login');
 				req.session.user = "admin";
 				req.session.admin = true;
 				req.session.president = false;
 				res.redirect('/admin');
 			}
-			else if (req.body.username === "president" && req.body.password === "president") {
+			else if (req.body.username === process.env.USERNAME_PREZ && req.body.password === process.env.PASSWORD_PREZ) {
 				logger.info("president login");
 				req.session.user = "president";
 				req.session.admin = true;
