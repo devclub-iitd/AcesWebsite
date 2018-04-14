@@ -3,9 +3,12 @@
 var path = process.cwd();
 var contactFormMailer = require('../controllers/contactFormMailer.js');
 var galleryController = require('../controllers/galleryController.js');
-var unzip = require('unzip');
 var billController = require('../controllers/billController.js');
 var userController = require('../controllers/userController.js');
+var bankController = require('../controllers/bankController.js');
+var withdrawController = require('../controllers/withdrawController.js');
+var collectedController = require('../controllers/collectedController.js');
+var unzip = require('unzip');
 var logger = require('../../logger');
 
 module.exports = function(app, fs) {
@@ -28,7 +31,14 @@ module.exports = function(app, fs) {
 	};
 
 	var adminAuth = function(req, res, next) {
-    if (req.session && req.session.admin)
+		if (req.session && req.session.admin)
+			return next();
+		else
+			return res.redirect('/login');
+	};
+
+	var presidentAuth = function(req, res, next) {
+		if (req.session && req.session.president)
 			return next();
 		else
 			return res.redirect('/login');
@@ -77,11 +87,19 @@ module.exports = function(app, fs) {
 			if (!req.body.username || !req.body.password) {
 				res.send('login failed');
 			}
-			else if (req.body.username === "admin" && req.body.password === "admin") {
+			else if (req.body.username === process.env.USERNAME_ADMIN && req.body.password === process.env.PASSWORD_ADMIN) {
 				logger.info('admin login');
 				req.session.user = "admin";
 				req.session.admin = true;
+				req.session.president = false;
 				res.redirect('/admin');
+			}
+			else if (req.body.username === process.env.USERNAME_PREZ && req.body.password === process.env.PASSWORD_PREZ) {
+				logger.info("president login");
+				req.session.user = "president";
+				req.session.admin = true;
+				req.session.president = true;
+				res.redirect('/president');
 			}
 			else {
 				userController.findUser(req.body).then(function(user) {
@@ -97,7 +115,9 @@ module.exports = function(app, fs) {
 		});
 	app.route('/admin')
 		.get(adminAuth, function(req, res) {
-			res.render(path + '/public/admin');
+			bankController.getAmount().then(function(amt) {
+				res.render(path + '/public/admin', { amount: amt });
+			});
 		});
 	app.route('/logout')
 		.get(auth, function(req, res) {
@@ -117,7 +137,7 @@ module.exports = function(app, fs) {
 				try {
 					fs.createReadStream(path + '/public/img/events/uploaded').pipe(unzip.Extract({ path: path + '/public/img/events/' }));
 				}
-				catch(err){
+				catch (err) {
 					res.send('Please upload a valid zip file');
 				}
 				if (req.session.admin)
@@ -150,12 +170,18 @@ module.exports = function(app, fs) {
 		.get(adminAuth, function(req, res) {
 			logger.info('Bill deleted by= ' + req.session.user);
 			billController.deleteBill(req.query.id);
-			res.redirect("/admin");
+			if (req.session.president)
+				res.redirect('/president');
+			else
+				res.redirect('/admin');
 		})
 		.post(adminAuth, function(req, res) {
 			logger.info('Bill marked reimbursed by= ' + req.session.user);
 			billController.updateBill(req.body.bill_id);
-			res.redirect("/admin");
+			if (req.session.president)
+				res.redirect('/president');
+			else
+				res.redirect('/admin');
 		});
 	app.route('/users')
 		.get(adminAuth, function(req, res) {
@@ -171,17 +197,75 @@ module.exports = function(app, fs) {
 					return res.status(500).send(err);
 				logger.info('User added by= ' + req.session.user + ' username= ' + req.body.username);
 				userController.addUser(req.body, '/team_pics/' + req.body.username + '_' + req.files.pic.name);
-				res.redirect('/admin');
+				if (req.session.president)
+					res.redirect('/president');
+				else
+					res.redirect('/admin');
 			});
 		});
 	app.route('/user_del')
 		.get(adminAuth, function(req, res) {
 			logger.info('User deleted by= ' + req.session.user);
 			userController.deleteUser(req.query.id);
-			res.redirect("/admin");
+			if (req.session.president)
+				res.redirect('/president');
+			else
+				res.redirect('/admin');
 		});
 	app.route('/user')
 		.get(auth, function(req, res) {
 			res.render(path + '/public/user');
+		});
+	app.route('/bank')
+		.post(adminAuth, function(req, res) {
+			bankController.updateAmount(req.body.amount);
+			if (req.session.president)
+				res.redirect('/president');
+			else
+				res.redirect('/admin');
+		})
+		.get(presidentAuth, function(req, res) {
+			logger.info('Withdraw request deleted');
+			withdrawController.deleteRequest(req.query.id);
+			res.redirect("/president");
+		});
+	app.route('/withdraw')
+		.post(adminAuth, function(req, res) {
+			logger.info('Withdrawal request added by: ' + req.session.user);
+			withdrawController.addWithdraw(req.body, req.session.user);
+			if (req.session.president)
+				res.redirect('/president');
+			else
+				res.redirect('/admin');
+		})
+		.get(adminAuth, function(req, res) {
+			withdrawController.allWithdraw().then(function(data) {
+				res.send(data);
+			});
+		});
+	app.route('/president')
+		.get(presidentAuth, function(req, res) {
+			bankController.getAmount().then(function(amt) {
+				res.render(path + '/public/president', { amount: amt });
+			});
+		})
+		.post(presidentAuth, function(req, res) {
+			logger.info('Withdraw request approved');
+			withdrawController.updateRequest(req.body.id);
+			res.redirect("/president");
+		});
+	app.route('/collected')
+		.get(adminAuth, function(req, res) {
+			collectedController.allCollected().then(function(data) {
+				res.send(data);
+			});
+		})
+		.post(adminAuth, function(req, res) {
+			logger.info('Money collected added by: ' + req.session.user);
+			collectedController.addCollected(req.body, req.session.user);
+			if (req.session.president)
+				res.redirect('/president');
+			else
+				res.redirect('/admin');
 		});
 };

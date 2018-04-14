@@ -1,0 +1,96 @@
+    <div class="box">
+        <% include ./upload_pics.ejs %>
+    </div>
+    <div class="box">
+        <% include ./upload_bills.ejs %>
+    </div>
+    <div class="box">
+        <h1>All Bills</h1><br>
+        <table style="width:100%" class="bill-list">
+            <tr>
+                <th>Item</th>
+                <th>Event</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Uploader</th>
+                <th>Reimbursed</th>
+            </tr>
+        </table>
+        <h5 id="total"></h5>
+        <h5 id="reimburse"></h5>
+    </div>
+    <div class="box">
+        <h1>Create a new User</h1>
+        <form action='/users' method='post' enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="full name" required>
+            <input type="text" name="username" placeholder="username" pattern="[a-zA-Z0-9!@#$%^*_|]{6,25}" title="username without any spaces between 6 to 25 characters" required>
+            <input type="password" name="password" placeholder="password" pattern="[a-zA-Z0-9!@#$_]{6,25}" title="password without any spaces between 6 to 25 characters(!, @, #, $, _, allowed" required><br><br>
+            <input type="text" name="role" placeholder="role in the team" required>
+            <input type="email" name="email" placeholder="email id" required>
+            <input type="text" name="fb" placeholder="full link to facebook profile" required>
+            <input type="file" name="pic" required><br><br>
+            <input type="checkbox" name="admin"> Admin privileges
+            <div><button class="btn">Create</button></div>
+        </form>
+    </div>
+    <div class="box">
+        <h1>All Users</h1>
+        <table style="width:100%" class="user-list">
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Admin</th>
+            </tr>
+        </table>
+    </div>
+    <div class="box">
+        <h1>Bank Account Details</h1><br>
+        <h5 id='curbalance'>Current Balance =&nbsp;<%= amount %></h5>
+        <hr>
+        <h5>Withdrawal request initiation form</h5><br>
+        <form action='/withdraw' method='post' enctype="multipart/form-data">
+            <input type="text" name="purpose" placeholder="purpose" required>
+            <input type="number" name="amount" placeholder="amount" required>
+            <button class="btn">Submit</button>
+        </form>
+        <hr>
+        <h5>Amount deposition form</h5>
+        <form action='/bank' method='post' enctype="multipart/form-data">
+            <input type="number" name="amount" placeholder="amount" required>
+            <button class="btn">Submit</button>
+        </form>
+        <hr>
+        <h5>Amount collected form</h5><br>
+        <form action='/collected' method='post' enctype="multipart/form-data">
+            <input type="text" name="purpose" placeholder="purpose" required>
+            <input type="number" name="amount" placeholder="amount" required>
+            <button class="btn">Submit</button>
+        </form>
+        <hr>
+        <h5>Pending Withdrawal Requests</h5>
+        <table style="width:100%" class="pending-list">
+            <tr>
+                <th>Name</th>
+                <th>Purpose</th>
+                <th>Amount</th>
+            </tr>
+        </table><br>
+        <hr>
+        <h5>Approved Withdrawal Requests</h5>
+        <table style="width:100%" class="approved-list">
+            <tr>
+                <th>Name</th>
+                <th>Purpose</th>
+                <th>Amount</th>
+            </tr>
+        </table>
+        <hr>
+        <h5>Collected money</h5>
+        <table style="width:100%" class="collected-list">
+            <tr>
+                <th>Name</th>
+                <th>Purpose</th>
+                <th>Amount</th>
+            </tr>
+        </table>
+    </div>
