@@ -12,11 +12,15 @@
 # To run it locally 
 <ol>
 <li>create a new file called .env
-<li>Open your .env file and paste this into it, then save it:
+<li>Open your .env file and define these env variables, then save it:
         <ul>
         <li>MONGO_URI=mongodb://localhost:27017/clementinejs
         <li>PORT=8080
         <li>APP_URL=http://localhost:8080/
+        <li>USERNAME_ADMIN=
+        <li>USERNAME_PASSWORD=
+        <li>USERNAME_PREZ=
+        <li>PASSWORD_PREZ=
         </ul>
 <li>In your terminal, install MongoDB by entering: 
         <ul>
