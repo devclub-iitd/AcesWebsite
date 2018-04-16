@@ -17,7 +17,7 @@
             data.forEach(function(user) {
                 var tr = document.createElement('tr');
                 tr.setAttribute('class', 'bill-item');
-                tr.innerHTML = "<td>" + user.name + "</td><td>" + user.username + "</td><td>" + user.admin + "</td><td><button class='btn2 userdel' " + "id =" + user._id + ">delete user</button></td>";
+                tr.innerHTML = "<td><button class='btn'><i class='fa fa-arrow-up' aria-hidden='true'></i></button>&nbsp;<button class='btn'><i class='fa fa-arrow-down' aria-hidden='true'></i></button></td><td>" + user.name + "</td><td>" + user.username + "</td><td>" + user.admin + "</td><td><button class='btn2 userdel' " + "id =" + user._id + ">delete user</button></td>";
                 userList.append(tr);
             });
         }).then(function() {

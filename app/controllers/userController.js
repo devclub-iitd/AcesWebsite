@@ -10,24 +10,29 @@ module.exports = {
 
     addUser: function(data, path) {
         bcrypt.hash(data.password, saltRounds, function(err, hash) {
-            if (err) throw err;
-            var newUser = new User();
-            newUser.name = data.name;
-            newUser.username = data.username;
-            newUser.password = hash;
-            if (data.admin == 'on')
-                newUser.admin = true;
-            else
-                newUser.admin = false;
-            newUser.fbid = data.fb;
-            newUser.email = data.email;
-            newUser.imagepath = path;
-            newUser.role = data.role;
-            newUser.save(function(err) {
-                if (err) {
-                    throw err;
-                }
+            module.exports.numUsers().then(function(num) {
+                console.log(num);
+                if (err) throw err;
+                var newUser = new User();
+                newUser.name = data.name;
+                newUser.username = data.username;
+                newUser.password = hash;
+                if (data.admin == 'on')
+                    newUser.admin = true;
+                else
+                    newUser.admin = false;
+                newUser.fbid = data.fb;
+                newUser.email = data.email;
+                newUser.imagepath = path;
+                newUser.role = data.role;
+                newUser.order = num;
+                newUser.save(function(err) {
+                    if (err) {
+                        throw err;
+                    }
+                });
             });
+
         });
     },
 
@@ -44,8 +49,8 @@ module.exports = {
         User.findOneAndRemove({ _id: user_id }, function(err, doc) {
             if (err) console.error(err);
             logger.info('Deleted User= ' + doc.username);
-            fs.unlink("./public" + doc.imagepath, function(err){
-                if(err) console.log(err);
+            fs.unlink("./public" + doc.imagepath, function(err) {
+                if (err) console.log(err);
             });
             console.log(doc);
         });
@@ -66,6 +71,12 @@ module.exports = {
                     });
                 }
             });
+        });
+    },
+
+    numUsers: function() {
+        return new Promise(function(resolve, reject) {
+            resolve(User.count());
         });
     }
 };

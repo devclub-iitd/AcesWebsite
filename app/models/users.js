@@ -11,7 +11,8 @@ var User = new Schema({
 	fbid: String,
 	email: String,
 	imagepath: String,
-	role: String
+	role: String,
+	order: Number
 });
 
 module.exports = mongoose.model('User', User);
