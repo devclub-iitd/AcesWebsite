@@ -52,6 +52,14 @@ module.exports = {
             fs.unlink("./public" + doc.imagepath, function(err) {
                 if (err) console.log(err);
             });
+            var num = doc.order;
+            module.exports.allUsers().then(function(data) {
+                data.forEach(function(user) {
+                    if (user.order > num) {
+                        module.exports.updateOrder(user._id, num, user.order - 1);
+                    }
+                });
+            });
             console.log(doc);
         });
     },
@@ -77,6 +85,41 @@ module.exports = {
     numUsers: function() {
         return new Promise(function(resolve, reject) {
             resolve(User.count());
+        });
+    },
+
+    updateOrder: function(id, newOrder) {
+        User.findOneAndUpdate({ _id: id }, { $set: { order: newOrder } }, { new: true }, function(err, doc) {
+            if (err) console.error(err);
+        });
+    },
+
+    moveUp: function(id) {
+
+        User.findOneAndUpdate({ _id: id }, { $inc: { order: 0 } }, { new: true }, function(err, doc) {
+            if (err) console.error(err);
+            User.findOneAndUpdate({ order: doc.order - 1 }, { $inc: { order: 1 } }, { new: true }, function(err, doc) {
+                if (err) console.error(err);
+                if (doc) {
+                    User.findOneAndUpdate({ _id: id }, { $inc: { order: -1 } }, { new: true }, function(err, doc) {
+                        if (err) console.error(err);
+                    });
+                }
+            });
+        });
+    },
+
+    moveDown: function(id) {
+        User.findOneAndUpdate({ _id: id }, { $inc: { order: 0 } }, { new: true }, function(err, doc) {
+            if (err) console.error(err);
+            User.findOneAndUpdate({ order: doc.order + 1 }, { $inc: { order: -1 } }, { new: true }, function(err, doc) {
+                if (err) console.error(err);
+                if (doc) {
+                    User.findOneAndUpdate({ _id: id }, { $inc: { order: 1 } }, { new: true }, function(err, doc) {
+                        if (err) console.error(err);
+                    });
+                }
+            });
         });
     }
 };
