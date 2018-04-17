@@ -22,12 +22,12 @@
     <div class="box">
         <h1>Create a new User</h1>
         <form action='/users' method='post' enctype="multipart/form-data">
-            <input type="text" name="name" placeholder="full name" required>
-            <input type="text" name="username" placeholder="username" pattern="[a-zA-Z0-9!@#$%^*_|]{6,25}" title="username without any spaces between 6 to 25 characters" required>
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="text" name="username" placeholder="username" pattern="[a-zA-Z0-9!@#$%^*_|]{4,25}" title="username without any spaces between 4 to 25 characters" required>
             <input type="password" name="password" placeholder="password" pattern="[a-zA-Z0-9!@#$_]{6,25}" title="password without any spaces between 6 to 25 characters(!, @, #, $, _, allowed" required><br><br>
-            <input type="text" name="role" placeholder="role in the team" required>
-            <input type="email" name="email" placeholder="email id" required>
-            <input type="text" name="fb" placeholder="full link to facebook profile" required>
+            <input type="text" name="role" placeholder="Role in the team" required>
+            <input type="email" name="email" placeholder="Email id" required>
+            <input type="text" name="fb" placeholder="Full link to facebook profile" required>
             <input type="file" name="pic" required><br><br>
             <input type="checkbox" name="admin"> Admin privileges
             <div><button class="btn">Create</button></div>
@@ -39,7 +39,8 @@
             <tr>
                 <th>Name</th>
                 <th>Username</th>
-                <th>Admin</th>
+                <th>Is admin?</th>
+                <th>Move Up/Down</th>                
             </tr>
         </table>
     </div>
@@ -47,20 +48,20 @@
         <h1>Bank Account Details</h1><br>
         <h5 id='curbalance'>Current Balance =&nbsp;<%= amount %></h5>
         <hr>
-        <h5>Withdrawal request initiation form</h5><br>
+        <h5>Withdrawal Request initiation form</h5><br>
         <form action='/withdraw' method='post' enctype="multipart/form-data">
             <input type="text" name="purpose" placeholder="purpose" required>
             <input type="number" name="amount" placeholder="amount" required>
             <button class="btn">Submit</button>
         </form>
         <hr>
-        <h5>Amount deposition form</h5>
+        <h5>Amount Deposited to Bank</h5>
         <form action='/bank' method='post' enctype="multipart/form-data">
             <input type="number" name="amount" placeholder="amount" required>
             <button class="btn">Submit</button>
         </form>
         <hr>
-        <h5>Amount collected form</h5><br>
+        <h5>Amount Collected</h5><br>
         <form action='/collected' method='post' enctype="multipart/form-data">
             <input type="text" name="purpose" placeholder="purpose" required>
             <input type="number" name="amount" placeholder="amount" required>
