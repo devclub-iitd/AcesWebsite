@@ -12,7 +12,10 @@ const logger = new winston.Logger({
         }),
         new winston.transports.File({
             filename: 'combined.log',
-            level: 'info'
+            level: 'info',
+            timestamp: function() {
+                return (new Date()).toString();
+            }
         })
     ]
 });
