@@ -7,7 +7,7 @@ const logger = new winston.Logger({
         new winston.transports.Console({
             level: level,
             timestamp: function() {
-                return (new Date()).toISOString();
+                return (new Date()).toString();
             }
         }),
         new winston.transports.File({
