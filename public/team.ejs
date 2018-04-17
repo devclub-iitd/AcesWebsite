@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <% team.forEach(function(user, index) { %>
+      <% team.sort(function(a, b){ return a.order - b.order}).forEach(function(user, index) { %>
         <% if(index%4 == 0) {%>
           <div class="row">
         <% } %>
