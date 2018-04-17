@@ -268,4 +268,20 @@ module.exports = function(app, fs) {
 			else
 				res.redirect('/admin');
 		});
+	app.route('/moveup')
+		.get(adminAuth, function(req, res) {
+			userController.moveUp(req.query.id);
+			if (req.session.president)
+				res.redirect('/president');
+			else
+				res.redirect('/admin');
+		});
+	app.route('/movedown')
+		.get(adminAuth, function(req, res) {
+			userController.moveDown(req.query.id);
+			if (req.session.president)
+				res.redirect('/president');
+			else
+				res.redirect('/admin');
+		});
 };
