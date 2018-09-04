@@ -22,7 +22,7 @@
                 totalExpenditure += Number(bill.amount);
                 if(bill.reimbursed == 'No') amountToBeReimbursed += Number(bill.amount);
                 tr.setAttribute('class', 'bill-item');
-                tr.innerHTML = "<td>" + bill.item + "</td><td>" + bill.event + "</td><td>" + bill.date + "</td><td>" + bill.amount + "</td><td>" + bill.uploader + "</td><td>" + bill.reimbursed + "</td><td><button class='btn2 reimb' " + "id=#" + bill._id + ">mark reimbursed</button></td><td><button class='btn2 del' " + "id =" + bill._id + ">delete bill</button></td><td><a href=" + bill.billImagePath + "><button class='btn2'>Download Bill</button></a>";
+                tr.innerHTML = "<td>" + bill.item + "</td><td>" + bill.event + "</td><td>" + bill.date + "</td><td>" + bill.amount + "</td><td>" + bill.uploader + "</td><td>" + bill.reimbursed + "</td><td><button class='btn2 reimb' " + "id=#" + bill._id + ">mark reimbursed</button></td><td><button class='btn2 del' " + "id =" + bill._id + ">delete bill</button></td><td><a href=" + encodeURI(bill.billImagePath) + "><button class='btn2'>Download Bill</button></a>";
                 billList.append(tr);
             });
             total.innerHTML = 'Total expenditure = ' + totalExpenditure;
