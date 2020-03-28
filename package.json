@@ -32,7 +32,7 @@
     "express-session": "^1.15.6",
     "file-system": "^2.2.2",
     "mongodb": "^2.2.31",
-    "mongoose": "^4.1.0",
+    "mongoose": "^5.9.6",
     "morgan": "^1.9.0",
     "nodemailer": "^4.1.0",
     "passport": "^0.3.0",
