@@ -23,7 +23,7 @@
   "author": "DevClub-IITD",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^5.0.0",
     "body-parser": "",
     "dotenv": "^1.2.0",
     "ejs": "^2.5.7",
