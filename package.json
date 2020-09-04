@@ -31,7 +31,7 @@
     "express-fileupload": "^0.3.0",
     "express-session": "^1.15.6",
     "file-system": "^2.2.2",
-    "mongodb": "^2.2.31",
+    "mongodb": "^3.6.1",
     "mongoose": "^5.9.6",
     "morgan": "^1.9.0",
     "nodemailer": "^4.1.0",
